@@ -32,7 +32,7 @@ ENV OJS_DB_USER ojs
 ENV OJS_DB_PASSWORD ojs@#2017
 ENV OJS_DB_NAME ojs
 # Site servername
-ENV SERVERNAME ojs-v3.scielo.org
+ENV SERVERNAME app.theclinicalacademia.org
 ENV APACHE_LOG_DIR /var/log/apache2
 ENV LOG_NAME 0js-v3_scielo_org
 
