@@ -1,0 +1,36 @@
+version: '2'
+volumes:
+  mysqldata:
+      driver: local
+
+networks:
+  backend:
+      driver: bridge
+
+services:
+  web:
+    build: 
+      context: .
+    image: ojs
+    networks:
+      - backend
+    volumes:
+      - ./www/files:/var/www/files 
+    ports:
+      - 80:80
+
+  db:
+    image: mariadb:10.1
+    restart: always
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - "mysqldata:/var/lib/mysql"
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ojs
+      MYSQL_USER: ojs
+      MYSQL_PASSWORD: ojs@#2017
+    networks:
+      - backend  
