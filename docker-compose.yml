@@ -14,11 +14,15 @@ services:
     image: ojs
     networks:
       - backend
-    volumes:
-      - ./www/files:/var/www/files 
+    environment:
+      OJS_DB_HOST: db
+      OJS_DB_USER: ojs
+      OJS_DB_PASSWORD: ojs@#2017
+      OJS_DB_NAME: ojs
     ports:
       - 80:80
-
+    volumes:
+      - ./www/files:/var/www/files
   db:
     image: mariadb:10.1
     restart: always
