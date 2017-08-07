@@ -23,6 +23,7 @@ services:
       - 80:80
     volumes:
       - ./www/files:/var/www/files:ro
+      - ./www/ojs:/var/www/ojs:ro
   db:
     image: mariadb:10.1
     restart: always
