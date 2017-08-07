@@ -4,7 +4,7 @@ LABEL maintainer "Sathit Seethaphon <dixonsatit@gmail.com>"
 
 ENV OJS_VERSION 3.0.2
 
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 RUN a2enmod rewrite expires
 
@@ -39,7 +39,8 @@ RUN curl -o /var/www/ojs.tar.gz -SL http://pkp.sfu.ca/ojs/download/ojs-${OJS_VER
   && chown -R www-data:www-data /var/www/files \
   && chmod -R 777 /var/www/files/
 
-VOLUME ["/var/www"]
+VOLUME ["/var/www/files"]
+VOLUME ["/var/www/ojs"]
 
 # Add crontab running runSheduledTasks.php
 COPY ojs-crontab.conf /ojs-crontab.conf
