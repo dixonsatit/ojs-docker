@@ -22,7 +22,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./www:/var/www:ro
+      - ./www:/var/www/html:ro
   db:
     image: mariadb:10.1
     restart: always
