@@ -41,7 +41,7 @@ services:
   pwa:
     image: phpmyadmin/phpmyadmin
     restart: always
-    port: 3001:80
+    ports: 3001:80
     environment:
       PMA_HOST: db
     networks:
