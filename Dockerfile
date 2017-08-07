@@ -27,11 +27,11 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini \
   && a2enmod rewrite
 
-# upstream tarballs include ./ojs-${OJS_VERSION}/ so this gives us /var/www/ojs
-# RUN curl -o /var/www/ojs.tar.gz -SL http://pkp.sfu.ca/ojs/download/ojs-${OJS_VERSION}.tar.gz \
-# 	&& tar -xzf /var/www/ojs.tar.gz -C /var/www \
-# 	&& rm /var/www/ojs.tar.gz \
-#   && mv /var/www/ojs-${OJS_VERSION} /var/www/ojs \
+upstream tarballs include ./ojs-${OJS_VERSION}/ so this gives us /var/www/ojs
+RUN curl -o /var/www/ojs.tar.gz -SL http://pkp.sfu.ca/ojs/download/ojs-${OJS_VERSION}.tar.gz \
+	&& tar -xzf /var/www/ojs.tar.gz -C /var/www \
+	&& rm /var/www/ojs.tar.gz \
+  && mv /var/www/ojs-${OJS_VERSION} /var/www/ojs \
 
   # creating a directory to save uploaded files.
   && mkdir -p /var/www/files/ \
