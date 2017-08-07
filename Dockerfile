@@ -1,10 +1,10 @@
 FROM php:5.6-apache
 
-MAINTAINER Sathit Seethaphon <dixonsatit@gmail.com>
+LABEL maintainer "Sathit Seethaphon <dixonsatit@gmail.com>" 
 
 ENV OJS_VERSION 3.0.2
 
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 RUN a2enmod rewrite expires
 
@@ -36,7 +36,10 @@ RUN curl -o /var/www/ojs.tar.gz -SL http://pkp.sfu.ca/ojs/download/ojs-${OJS_VER
   # creating a directory to save uploaded files.
   && mkdir -p /var/www/files/ \
   && chown -R www-data:www-data /var/www/ \
+  && chown -R www-data:www-data /var/www/files \
   && chmod -R 777 /var/www/files/
+
+VOLUME ["/var/www"]
 
 # Add crontab running runSheduledTasks.php
 COPY ojs-crontab.conf /ojs-crontab.conf
@@ -49,9 +52,10 @@ RUN sed -i 's:INSTALL_DIR:'`pwd`':' /ojs-crontab.conf \
 
 COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
-VOLUME /var/www
-
 EXPOSE 80
+
+
+
 # Add startup script to the container.
 COPY ojs-startup.sh /ojs-startup.sh
 # Execute the containers startup script which will start many processes/services
